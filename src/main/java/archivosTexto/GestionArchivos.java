@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,11 +17,27 @@ import java.util.Scanner;
  * @author meli
  */
 public class GestionArchivos {
+    List<String> listaContactos;
+
+    public GestionArchivos() {
+    listaContactos=new ArrayList<>();
+    }
+    public void mostrarContenido(){
+        Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
+        try{
+            if (Files.exists(path)) {
+                listaContactos=Files.readAllLines(path);
+            }else{
+                System.out.println("no existe el archivo");
+            }
+        }catch(Exception e){
+    }
+    
     //objeto de lectura
     Scanner leer=new Scanner(System.in);
     //metodos
     public void crearArchivo(){
-        Path path=Paths.get("D:\\programacionII_Nocturno\\misContactos.txt");
+        Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
         try {
             if(!Files.exists(path)){
                 //no existe
@@ -34,7 +52,7 @@ public class GestionArchivos {
         }
     }
     public void adicionarContacto(){
-      Path path=Paths.get("D:\\programacionII_Nocturno\\misContactos.txt");
+      Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
       String nombre,direccion,telefono,res="S";
         try {
             if(Files.exists(path)){
