@@ -19,6 +19,7 @@ import java.util.Scanner;
 public class GestionArchivos {
     List<String> listaContactos;
 
+Scanner leer=new Scanner(System.in);
     public GestionArchivos() {
     listaContactos=new ArrayList<>();
     }
@@ -27,30 +28,71 @@ public class GestionArchivos {
         try{
             if (Files.exists(path)) {
                 listaContactos=Files.readAllLines(path);
+                if(!listaContactos.isEmpty()){
+                    for (String linea:listaContactos) {
+                         System.out.println(linea);
+                    }
+                   
+                }else{
+                    System.out.println("el archivo esta vacio");
+                }
             }else{
                 System.out.println("no existe el archivo");
             }
         }catch(Exception e){
     }
+    }
+     public void buscarContenido(){
+         String nomContacto;
+         int sw=0;
+         String vector[];
+        Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
+        try{
+            if(Files.exists(path)){
+                  listaContactos=Files.readAllLines(path);
+                 if(!listaContactos.isEmpty()){    
+                     System.out.println("dijite nombre de contacto a buscar");
+                     nomContacto=leer.nextLine();
+                     for(String linea:listaContactos){
+                     vector=linea.split("-");
+                     if(nomContacto.equalsIgnoreCase(vector[0])){
+                         sw=1;
+                         System.out.println("______CONTACTO ENCONTRADO_____-");
+                         System.out.println("nombre"+vector[0]);
+                         System.out.println("dirrecion"+vector[1]);
+                         System.out.println("Noro de Celular"+vector[2]);
+                         System.out.println("-------------------------------");
+                     }
+                     }
+                     if (sw==0) {
+                         System.out.println("Contacto no encontrado");
+                     }
+                 }else{
+                     System.out.println("el archivo esta vacio");
+                 }
+            }else{
+                System.out.println("el archivo no existe");
+            }
+        }catch(Exception e){
+    }
+     }
     
-    //objeto de lectura
-    Scanner leer=new Scanner(System.in);
     //metodos
     public void crearArchivo(){
         Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
         try {
             if(!Files.exists(path)){
-                //no existe
+               //no existe
                 Files.createFile(path);
                 System.out.println("Archivo creado");
             }else{
                 System.out.println("El archivo ya existe");
             }
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
     public void adicionarContacto(){
       Path path=Paths.get("C:\\programacionSISAN\\misContactos.txt");
       String nombre,direccion,telefono,res="S";
