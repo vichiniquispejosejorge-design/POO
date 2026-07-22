@@ -1,6 +1,12 @@
 
 package archivosobjetos;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -50,4 +56,38 @@ public class OperacionesClienteTarjeta {
             System.out.println("no se tiene clientes registrados");
         }
   }
+  public void guardarobjetos(){
+        String ruta="C::\\programacionSISAN:\\cliente.txt";
+        try { 
+            FileOutputStream archivo=new FileOutputStream(ruta);
+            ObjectOutputStream oos=new ObjectOutputStream(archivo);
+            oos.writeObject(listacliente);
+            
+            oos.close();
+            archivo.close();
+            System.out.println("datos guardados");
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+            
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+  }
+    public void leercliente(){
+         String ruta="C::\\programacionSISAN:\\cliente.txt";
+        try { 
+            FileInputStream archivo=new FileInputStream(ruta);
+            ObjectInputStream oos=new ObjectInputStream(archivo);
+            listacliente=(List<Cliente>)oos.readObject();
+         
+            System.out.println("datos guardados");
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+            
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }catch (ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+    } 
 }
