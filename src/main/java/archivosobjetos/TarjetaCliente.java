@@ -1,14 +1,16 @@
 
 package archivosobjetos;
 
-public class TarjetaCliente {
+import java.io.Serializable;
+
+public class TarjetaCliente implements Serializable{
    private int nrotarjeta,nrocuenta;
    private double saldo;
    private String estado;
    
   public void mostrartarjeta(){
-      System.out.println("tarjeta"+this.nrotarjeta);
-       System.out.println("cuenta"+this.nrocuenta);
+      System.out.println("nro.tarjeta"+this.nrotarjeta);
+       System.out.println("nro.cuenta"+this.nrocuenta);
        System.out.println("slado"+this.saldo);
        System.out.println("estado"+this.estado);
   }
