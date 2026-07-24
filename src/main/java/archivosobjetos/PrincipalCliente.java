@@ -20,12 +20,17 @@ public class PrincipalCliente {
         do{
             System.out.println("=========================MENU DE OPCIONES=========================");
             System.out.println("______________1. Registrar cliente nuevo_________________________");
-            System.out.println("______________2. salir__________________________");
+            System.out.println("______________2. mostrar todos los clientes__________________________");
+            System.out.println("______________3. depocitar de dinero __________________________");
+            System.out.println("______________4. salir __________________________");
             System.out.println("========================Digite una opcion=========================1");
             opc=leer.nextInt();
             switch(opc){
                 case 1: obj.registrarclientenuevo();
+                        obj.guardarobjetos();
+                case 2: obj.leercliente();
                         obj.mostrarcliente();
+                        case 3: obj.depocito();
                 break;
                 default: continuar=false; break;
             }

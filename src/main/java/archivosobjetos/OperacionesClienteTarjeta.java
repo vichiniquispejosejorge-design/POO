@@ -90,4 +90,30 @@ public class OperacionesClienteTarjeta {
             ex.printStackTrace();
         }
     } 
+    public void depocito(){
+        int sw=0;
+        String cl;
+        double monto;
+        if (!listacliente.isEmpty()) {
+            System.out.println("dijite el monto del dopocito");
+            cl=leer.nextLine();
+            for (Cliente c:listacliente) {
+                if (c.getNrcedula().equalsIgnoreCase(cl)) {
+                    sw=1;
+                    do {
+                        System.out.println("dijite monto a depocitar");
+                        monto=leer.nextDouble();
+                    } while (monto<=0);
+                    c.getTarjeta().setSaldo(c.getTarjeta().getSaldo()+monto);
+                    System.out.println("depocito realisado");
+                    System.out.println("saldo actual"+c.getTarjeta().getSaldo());
+                }
+            }if (sw==0) {
+                System.out.println("nose encontro el cliente");
+                
+            }
+        }else{
+            System.out.println("nose tiene registrado cliente");
+        }
+    }
 }
