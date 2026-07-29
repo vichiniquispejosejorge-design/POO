@@ -22,16 +22,21 @@ public class PrincipalCliente {
             System.out.println("______________1. Registrar cliente nuevo_________________________");
             System.out.println("______________2. mostrar todos los clientes__________________________");
             System.out.println("______________3. depocitar de dinero __________________________");
-            System.out.println("______________4. salir __________________________");
+            System.out.println("______________4. Retiro de dinero __________________________");
+            System.out.println("______________5. Bloqueo de targeta __________________________");
+            System.out.println("______________6. Desbloqueo de targeta __________________________");
             System.out.println("========================Digite una opcion=========================1");
             opc=leer.nextInt();
             switch(opc){
                 case 1: obj.registrarclientenuevo();
-                        obj.guardarobjetos();
+                        obj.guardarobjetos();  
                 case 2: obj.leercliente();
-                        obj.mostrarcliente();
+                        obj.mostrarcliente(); 
                         case 3: obj.depocito();
                 break;
+                        case 4: obj.extraccion();break;
+                        case 5: obj.bloqueartargeta();break;
+                        case 6: obj.desbloqueartargeta();break;
                 default: continuar=false; break;
             }
         }while(continuar);

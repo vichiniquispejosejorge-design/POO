@@ -116,4 +116,95 @@ public class OperacionesClienteTarjeta {
             System.out.println("nose tiene registrado cliente");
         }
     }
+     public void extraccion(){
+        int sw=0;
+        String cl;
+        double monto;
+        if (!listacliente.isEmpty()) {
+            leer.nextLine();
+            System.out.println("dijite el numero de carnet");
+            cl=leer.nextLine();
+            for (Cliente c:listacliente) {
+                if (c.getNrcedula().equalsIgnoreCase(cl)) {
+                    sw=1;
+                    if (c.getTarjeta().getEstado().equalsIgnoreCase("ACTIVO")) {
+                        
+                    
+                    do {
+                        System.out.println("dijite monto a sacar");
+                        monto=leer.nextDouble();
+                    } while (monto<=0);
+                    c.getTarjeta().setSaldo(c.getTarjeta().getSaldo()-monto);
+                    
+                    System.out.println("Retiro realisado");
+                    System.out.println("saldo actual"+c.getTarjeta().getSaldo());
+                    }else{
+                        System.out.println("La targeta esta INACTIVA ,comuniquece al banco");
+                    }
+                }
+            }if (sw==0) {
+                System.out.println("nose encontro el cliente");
+                
+            }
+        }else{
+            System.out.println("nose tiene registrado cliente");
+        }
+    }
+     public void  bloqueartargeta(){
+         String ci,res;
+         int sw=0;
+         if (!listacliente.isEmpty()) {
+             System.out.println("Digite el numero de celula del cliente");
+             ci=leer.nextLine();
+             for (Cliente c:listacliente) {
+                 if (c.getNrcedula().equalsIgnoreCase(ci)) {
+                     sw=1;
+                     if (c.getTarjeta().getEstado().equalsIgnoreCase("Activo")) {
+                         System.out.println("Desea bloquear su targeta de credito? S/N");
+                         res=leer.nextLine();
+                         if (res.equalsIgnoreCase("s")) {
+                             c.getTarjeta().setEstado("INACTIVO");
+                             System.out.println("Targeta:"+c.getTarjeta().getNrotarjeta()+ "BLOqueADO");
+                         }else{
+                             System.out.println("Operacion Cancelada");
+                         }
+                     }else{
+                         System.out.println("LA targeta ya esta bloqueada");
+                     }
+                 }
+             }
+         }else{
+             System.out.println("Clientes vacios");
+         }
+     }
+       public void  desbloqueartargeta(){
+         String ci,res;
+         int sw=0,nnt;
+         if (!listacliente.isEmpty()) {
+             System.out.println("Digite el numero de celula del cliente");
+             ci=leer.nextLine();
+             for (Cliente c:listacliente) {
+                 if (c.getNrcedula().equalsIgnoreCase(ci)) {
+                     sw=1;
+                     if (c.getTarjeta().getEstado().equalsIgnoreCase("inactivo")) {
+                         System.out.println("Desea crear su targeta de credito? S/N");
+                         res=leer.nextLine();
+                         if (res.equalsIgnoreCase("s")) {
+                             System.out.println("Cual es su nuevo numero de targeta:");
+                             nnt=leer.nextInt();
+                             c.getTarjeta().setNrotarjeta(nnt);
+                               c.getTarjeta().setEstado("ACTIVO");
+                             System.out.println("Targeta:"+c.getTarjeta().getNrotarjeta()+ " Asignada");
+                         }else{
+                             System.out.println("Operacion Cancelada");
+                         }
+                     }else{
+                         System.out.println("LA targeta ya esta bloqueada");
+                     }
+                 }System.out.println("Cliente no encontrado");
+             }
+         }else{
+             System.out.println("Clientes vacios");
+         }
+     }
 }
